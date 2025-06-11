@@ -1,0 +1,125 @@
+@font-face {
+  font-family: 'Modern FS';
+  src: url('./fonts/ModernFS-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.modern-fs {
+  font-family: 'Modern FS', sans-serif;
+}
+
+/* --- Card Styling with Depth --- */
+.glow-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease-in-out;
+  z-index: 0;
+}
+
+/* --- Shine Effect with Realistic Soft Edges --- */
+.glow-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: inherit;
+  filter: blur(8px);
+  opacity: 0;
+  transition: all 0.6s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glow-card:hover::before {
+  left: 100%;
+  opacity: 0.15;
+}
+
+/* --- Footer Shine BG --- */
+.shine-bg {
+  background: radial-gradient(circle at center, #ffffff33, transparent);
+}
+
+.chai-animation {
+  color: #b94c2a; /* Chai brown */
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.chai-animation:hover {
+  color: #d25f39;
+}
+
+/* Flowing wave */
+.chai-wave {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(90deg, #d25f39, #c45733, #a8432a);
+  border-radius: 2px;
+  opacity: 0;
+  transition: width 1s ease-out, opacity 0.3s;
+  z-index: -1;
+}
+
+.chai-animation:hover .chai-wave {
+  width: 100%;
+  opacity: 1;
+}
+
+/* Drops */
+.chai-drop {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #d25f39;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateX(-50%) translateY(0);
+  animation: none;
+}
+
+.chai-animation:hover .chai-drop {
+  animation: drip 1.2s ease-out forwards;
+}
+
+.chai-drop.delay-1 {
+  animation-delay: 0.8s;
+}
+
+.chai-drop.delay-2 {
+  animation-delay: 1s;
+}
+
+@keyframes drip {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+}
